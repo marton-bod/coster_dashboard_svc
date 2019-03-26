@@ -16,10 +16,8 @@ public class AuthenticationService {
 
     private final String validationUrl;
 
-    public AuthenticationService(@Value("${user.service.host}") String userServiceHost,
-                                 @Value("${user.service.port}") int userServicePort) {
-        validationUrl = (userServiceHost.startsWith("http://")) ? "" : "http://"
-                + userServiceHost + ":" + userServicePort + "/auth/validate";
+    public AuthenticationService(@Value("${user.service.url}") String userServiceUrl) {
+        validationUrl = userServiceUrl + "/auth/validate";
     }
 
 
