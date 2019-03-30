@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,8 +34,8 @@ public class DashboardController {
     private final AuthenticationService authService;
 
     @GetMapping("/daily")
-    public List<LineChartEntry> getDailyTotals(@CookieValue(value = "auth_token") String token,
-                                               @CookieValue(value = "auth_id") String userId,
+    public List<LineChartEntry> getDailyTotals(@RequestHeader(value = "auth_token") String token,
+                                               @RequestHeader(value = "auth_id") String userId,
                                                @RequestParam(value = "month") String month) {
         checkAuthCredentials(token, userId);
         ParserUtil.YearAndMonth result = ParserUtil.parseYearAndMonth(month);
@@ -46,8 +47,8 @@ public class DashboardController {
     }
 
     @GetMapping("/total")
-    public DoubleSummaryStatistics getMonthlyStats(@CookieValue(value = "auth_token") String token,
-                                                   @CookieValue(value = "auth_id") String userId,
+    public DoubleSummaryStatistics getMonthlyStats(@RequestHeader(value = "auth_token") String token,
+                                                   @RequestHeader(value = "auth_id") String userId,
                                                    @RequestParam(value = "month") String month) {
         checkAuthCredentials(token, userId);
         ParserUtil.YearAndMonth result = ParserUtil.parseYearAndMonth(month);
@@ -55,8 +56,8 @@ public class DashboardController {
     }
 
     @GetMapping("/category")
-    public List<PieChartEntry> getCategoryTotals(@CookieValue(value = "auth_token") String token,
-                                                  @CookieValue(value = "auth_id") String userId,
+    public List<PieChartEntry> getCategoryTotals(@RequestHeader(value = "auth_token") String token,
+                                                  @RequestHeader(value = "auth_id") String userId,
                                                   @RequestParam(value = "month") String month) {
         checkAuthCredentials(token, userId);
         ParserUtil.YearAndMonth result = ParserUtil.parseYearAndMonth(month);
@@ -67,8 +68,8 @@ public class DashboardController {
     }
 
     @GetMapping("/monthly")
-    public List<LineChartEntry> getMonthlyTotals(@CookieValue(value = "auth_token") String token,
-                                               @CookieValue(value = "auth_id") String userId) {
+    public List<LineChartEntry> getMonthlyTotals(@RequestHeader(value = "auth_token") String token,
+                                               @RequestHeader(value = "auth_id") String userId) {
         checkAuthCredentials(token, userId);
         LocalDate date = LocalDate.now();
         int month = date.getMonthValue();
