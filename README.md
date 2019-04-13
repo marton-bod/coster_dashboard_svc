@@ -14,5 +14,4 @@ Developed in spring-boot.
 ### Actuator endpoints:
 - Health: localhost:9002/actuator/health
 - Beans: localhost:9002/actuator/beans
-- Env vars: localhost:9002/actuator/env
 - Status: localhost:9002/actuator/status
