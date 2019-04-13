@@ -64,6 +64,7 @@ public class DashboardController {
         return dashboardService.getTotalByCategoriesForMonth(userId, result.getYear(), result.getMonth())
                 .entrySet().stream()
                 .map(entry -> new PieChartEntry(entry.getValue(), entry.getKey().name(), randomColor()))
+                .sorted(comparing(PieChartEntry::getName))
                 .collect(toList());
     }
 
