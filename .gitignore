@@ -3,6 +3,7 @@
 /.mvn
 *.ini
 mvnw*
+*.log
 
 ### STS ###
 .apt_generated
