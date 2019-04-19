@@ -107,9 +107,9 @@ public class DashboardSvcApplicationTests {
 
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		DoubleSummaryStatistics stats = response.getBody();
-		assertEquals(4, stats.getCount());
-		assertEquals(33500, stats.getMax(), 0.0001);
-		assertEquals(1200, stats.getMin(), 0.0001);
+		assertEquals(3, stats.getCount());
+		assertEquals(33500 + 1200, stats.getMax(), 0.0001);
+		assertEquals(2500, stats.getMin(), 0.0001);
 		assertEquals(2500 + 1200 + 22500 + 33500, stats.getSum(), 0.0001);
 	}
 

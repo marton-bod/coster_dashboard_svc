@@ -33,8 +33,8 @@ public class DashboardService {
     }
 
     public DoubleSummaryStatistics getSummaryStatsForMonth(String userId, int year, int month) {
-        List<Expense> expenses = expenseRepository.findAllByUserIdAndYearAndMonth(userId, year, month);
-        return expenses.stream().mapToDouble(Expense::getAmount).summaryStatistics();
+        Map<String, Double> dailyTotals = getDailyTotalsForMonth(userId, year, month);
+        return dailyTotals.values().stream().mapToDouble(i -> i).summaryStatistics();
     }
 
     public Map<ExpenseCategory, Double> getTotalByCategoriesForMonth(String userId, int year, int month) {
